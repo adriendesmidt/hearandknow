@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Cube:cube xmlns:Cube="http://www.sap.com/ndb/BiModelCube.ecore" schemaVersion="1.5" id="REGION_SALES_BP" applyPrivilegeType="ANALYTIC_PRIVILEGE" checkAnalyticPrivileges="true" defaultClient="$$client$$" defaultLanguage="$$language$$" visibility="reportingEnabled">
+  <descriptions defaultDescription="Region wise sales data for BP"/>
+  <defaultSchema schemaName=""/>
+  <localVariables/>
+  <privateMeasureGroup id="MeasureGroup">
+    <attributes>
+      <attribute id="CURRENCY" order="5" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CURRENCY"/>
+        <keyMapping schemaName="SAP_HANA_DEMO" columnObjectName="sap.hana.democontent.epm.data::SO.Header" columnName="CURRENCY"/>
+      </attribute>
+      <attribute id="SALESORDERID" order="6" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="SALESORDERID"/>
+        <keyMapping schemaName="SAP_HANA_DEMO" columnObjectName="sap.hana.democontent.epm.data::SO.Header" columnName="SALESORDERID"/>
+      </attribute>
+      <attribute id="HISTORY_CREATEDAT" order="7" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="HISTORY_CREATEDAT"/>
+        <keyMapping schemaName="SAP_HANA_DEMO" columnObjectName="sap.hana.democontent.epm.data::SO.Header" columnName="HISTORY.CREATEDAT"/>
+      </attribute>
+      <attribute id="PARTNER_PARTNERID" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="PARTNER_PARTNERID"/>
+        <keyMapping schemaName="SAP_HANA_DEMO" columnObjectName="sap.hana.democontent.epm.data::SO.Header" columnName="PARTNER.PARTNERID"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes>
+      <calculatedAttribute id="YEAR_OF_SALE" hidden="false" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="YEAR_OF_SALE"/>
+        <keyCalculation datatype="VARCHAR" length="10" scale="0">
+          <formula>midstr(string(&quot;HISTORY_CREATEDAT&quot;),0,4)</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+    </calculatedAttributes>
+    <privateDataFoundation>
+      <tableProxies>
+        <tableProxy>
+          <table schemaName="SAP_HANA_DEMO" columnObjectName="sap.hana.democontent.epm.data::SO.Header"/>
+        </tableProxy>
+      </tableProxies>
+      <joins/>
+      <layout>
+        <shapes>
+          <shape modelObjectName="sap.hana.democontent.epm.data::SO.Header" modelObjectNameSpace="SAP_HANA_DEMO" modelObjectType="catalog">
+            <upperLeftCorner x="70" y="30"/>
+          </shape>
+        </shapes>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures>
+      <measure id="GROSSAMOUNT" order="2" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="GROSSAMOUNT"/>
+        <measureMapping schemaName="SAP_HANA_DEMO" columnObjectName="sap.hana.democontent.epm.data::SO.Header" columnName="GROSSAMOUNT"/>
+      </measure>
+      <measure id="NETAMOUNT" order="3" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="NETAMOUNT"/>
+        <measureMapping schemaName="SAP_HANA_DEMO" columnObjectName="sap.hana.democontent.epm.data::SO.Header" columnName="NETAMOUNT"/>
+      </measure>
+      <measure id="TAXAMOUNT" order="4" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="TAXAMOUNT"/>
+        <measureMapping schemaName="SAP_HANA_DEMO" columnObjectName="sap.hana.democontent.epm.data::SO.Header" columnName="TAXAMOUNT"/>
+      </measure>
+    </baseMeasures>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <sharedDimensions>
+      <logicalJoin associatedObjectUri="/sap.hana.democontent.epm.spatial.models/attributeviews/BP_ADDRESS_DETAILS">
+        <attributes>
+          <attributeRef>#PARTNER_PARTNERID</attributeRef>
+        </attributes>
+        <associatedAttributeNames>
+          <attributeName>PARTNERID</attributeName>
+        </associatedAttributeNames>
+        <properties joinOperator="Equal" joinType="referential"/>
+        <associatedAttributeFeatures/>
+      </logicalJoin>
+    </sharedDimensions>
+    <layout>
+      <shapes>
+        <shape modelObjectName="MEASURE_GROUP" modelObjectType="repository">
+          <upperLeftCorner x="19" y="124"/>
+        </shape>
+        <shape modelObjectName="/sap.hana.democontent.epm.spatial.models/attributeviews/BP_ADDRESS_DETAILS" modelObjectType="repository">
+          <upperLeftCorner x="449" y="30"/>
+        </shape>
+        <shape modelObjectName="LogicalView" modelObjectNameSpace="MeasureGroup" modelObjectType="repository">
+          <upperLeftCorner x="40" y="85"/>
+          <rectangleSize/>
+        </shape>
+      </shapes>
+    </layout>
+  </privateMeasureGroup>
+</Cube:cube>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Privilege:analyticPrivilege xmlns:Privilege="http://www.sap.com/ndb/BiModelPrivilege.ecore" schemaVersion="1.1" id="SPATIAL">
+  <descriptions defaultDescription="Collection of privileges for Spatial scenario"/>
+  <securedModels allInformationModels="false">
+    <modelUri>/sap.hana.democontent.epm.spatial.models/attributeviews/BP_ADDRESS_DETAILS</modelUri>
+    <modelUri>/sap.hana.democontent.epm.spatial.models/analyticviews/REGION_SALES_BP</modelUri>
+    <modelUri>/sap.hana.democontent.epm.spatial.models/attributeviews/REGION_PRODUCT</modelUri>
+    <modelUri>/sap.hana.democontent.epm.spatial.models/analyticviews/PRODUCT_SALES</modelUri>
+  </securedModels>
+</Privilege:analyticPrivilege>

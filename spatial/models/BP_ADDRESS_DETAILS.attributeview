@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Dimension:dimension xmlns:Dimension="http://www.sap.com/ndb/BiModelDimension.ecore" schemaVersion="1.2" id="BP_ADDRESS_DETAILS" applyPrivilegeType="ANALYTIC_PRIVILEGE" checkAnalyticPrivileges="true" defaultClient="$$client$$" defaultLanguage="$$language$$" visibility="internal" dimensionType="Standard">
+  <descriptions defaultDescription="BP_ADDRESS_DETAILS"/>
+  <attributes>
+    <attribute id="ADDRESSID" order="1" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="ADDRESSID"/>
+      <keyMapping schemaName="SAP_HANA_DEMO" columnObjectName="sap.hana.democontent.epm.data::MD.Addresses" columnName="ADDRESSID"/>
+    </attribute>
+    <attribute id="CITY" order="2" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="CITY"/>
+      <keyMapping schemaName="SAP_HANA_DEMO" columnObjectName="sap.hana.democontent.epm.data::MD.Addresses" columnName="CITY"/>
+    </attribute>
+    <attribute id="POSTALCODE" order="3" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="POSTALCODE"/>
+      <keyMapping schemaName="SAP_HANA_DEMO" columnObjectName="sap.hana.democontent.epm.data::MD.Addresses" columnName="POSTALCODE"/>
+    </attribute>
+    <attribute id="STREET" order="4" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="STREET"/>
+      <keyMapping schemaName="SAP_HANA_DEMO" columnObjectName="sap.hana.democontent.epm.data::MD.Addresses" columnName="STREET"/>
+    </attribute>
+    <attribute id="BUILDING" order="5" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="BUILDING"/>
+      <keyMapping schemaName="SAP_HANA_DEMO" columnObjectName="sap.hana.democontent.epm.data::MD.Addresses" columnName="BUILDING"/>
+    </attribute>
+    <attribute id="COUNTRY" order="6" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="COUNTRY"/>
+      <keyMapping schemaName="SAP_HANA_DEMO" columnObjectName="sap.hana.democontent.epm.data::MD.Addresses" columnName="COUNTRY"/>
+    </attribute>
+    <attribute id="REGION" order="7" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="REGION"/>
+      <keyMapping schemaName="SAP_HANA_DEMO" columnObjectName="sap.hana.democontent.epm.data::MD.Addresses" columnName="REGION"/>
+    </attribute>
+    <attribute id="LATITUDE" order="8" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="LATITUDE"/>
+      <keyMapping schemaName="SAP_HANA_DEMO" columnObjectName="sap.hana.democontent.epm.data::MD.Addresses" columnName="LATITUDE"/>
+    </attribute>
+    <attribute id="LONGITUDE" order="9" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="LONGITUDE"/>
+      <keyMapping schemaName="SAP_HANA_DEMO" columnObjectName="sap.hana.democontent.epm.data::MD.Addresses" columnName="LONGITUDE"/>
+    </attribute>
+    <attribute id="PARTNERID" key="true" order="10" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="PARTNERID"/>
+      <keyMapping schemaName="SAP_HANA_DEMO" columnObjectName="sap.hana.democontent.epm.data::MD.BusinessPartner" columnName="PARTNERID"/>
+    </attribute>
+    <attribute id="EMAILADDRESS" order="11" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="EMAILADDRESS"/>
+      <keyMapping schemaName="SAP_HANA_DEMO" columnObjectName="sap.hana.democontent.epm.data::MD.BusinessPartner" columnName="EMAILADDRESS"/>
+    </attribute>
+    <attribute id="PHONENUMBER" order="12" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="PHONENUMBER"/>
+      <keyMapping schemaName="SAP_HANA_DEMO" columnObjectName="sap.hana.democontent.epm.data::MD.BusinessPartner" columnName="PHONENUMBER"/>
+    </attribute>
+    <attribute id="FAXNUMBER" order="13" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="FAXNUMBER"/>
+      <keyMapping schemaName="SAP_HANA_DEMO" columnObjectName="sap.hana.democontent.epm.data::MD.BusinessPartner" columnName="FAXNUMBER"/>
+    </attribute>
+    <attribute id="WEBADDRESS" order="14" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="WEBADDRESS"/>
+      <keyMapping schemaName="SAP_HANA_DEMO" columnObjectName="sap.hana.democontent.epm.data::MD.BusinessPartner" columnName="WEBADDRESS"/>
+    </attribute>
+    <attribute id="COMPANYNAME" order="15" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="COMPANYNAME"/>
+      <keyMapping schemaName="SAP_HANA_DEMO" columnObjectName="sap.hana.democontent.epm.data::MD.BusinessPartner" columnName="COMPANYNAME"/>
+    </attribute>
+    <attribute id="LEGALFORM" order="16" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="LEGALFORM"/>
+      <keyMapping schemaName="SAP_HANA_DEMO" columnObjectName="sap.hana.democontent.epm.data::MD.BusinessPartner" columnName="LEGALFORM"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <privateDataFoundation>
+    <tableProxies>
+      <tableProxy>
+        <table schemaName="SAP_HANA_DEMO" columnObjectName="sap.hana.democontent.epm.data::MD.Addresses"/>
+      </tableProxy>
+      <tableProxy>
+        <table schemaName="SAP_HANA_DEMO" columnObjectName="sap.hana.democontent.epm.data::MD.BusinessPartner"/>
+      </tableProxy>
+    </tableProxies>
+    <joins>
+      <join>
+        <leftTable schemaName="SAP_HANA_DEMO" columnObjectName="sap.hana.democontent.epm.data::MD.Addresses"/>
+        <rightTable schemaName="SAP_HANA_DEMO" columnObjectName="sap.hana.democontent.epm.data::MD.BusinessPartner"/>
+        <leftColumns>
+          <columnName>ADDRESSID</columnName>
+        </leftColumns>
+        <rightColumns>
+          <columnName>ADDRESSES.ADDRESSID</columnName>
+        </rightColumns>
+        <properties joinOperator="Equal" joinType="referential"/>
+      </join>
+    </joins>
+    <layout>
+      <shapes>
+        <shape modelObjectName="sap.hana.democontent.epm.data::MD.Addresses" modelObjectNameSpace="SAP_HANA_DEMO" modelObjectType="catalog">
+          <upperLeftCorner x="70" y="30"/>
+        </shape>
+        <shape modelObjectName="sap.hana.democontent.epm.data::MD.BusinessPartner" modelObjectNameSpace="SAP_HANA_DEMO" modelObjectType="catalog">
+          <upperLeftCorner x="546" y="30"/>
+        </shape>
+        <shape modelObjectName="DataFoundation" modelObjectNameSpace="DataFoundation" modelObjectType="repository">
+          <upperLeftCorner x="40" y="85"/>
+          <rectangleSize/>
+        </shape>
+      </shapes>
+    </layout>
+  </privateDataFoundation>
+  <hierarchies/>
+</Dimension:dimension>

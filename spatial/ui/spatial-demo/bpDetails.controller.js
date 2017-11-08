@@ -81,7 +81,8 @@ sap.ui.controller("spatial-demo.bpDetails", {
             // show info bubble
             ui.addBubble(bubble);
             
-            // infoBubbles.openBubble(label, marker.coordinate);
+            //infoBubbles.openBubble(label, marker.coordinate);
+            //COMPANY DATA ET DEVICE METADATA
 
             view.bpHeader.setTitle(selectedBP.Name);
             view.bpId.setText(selectedBP.ID);
@@ -89,7 +90,7 @@ sap.ui.controller("spatial-demo.bpDetails", {
             view.bpPhone.setText(selectedBP.Phone);
             view.bpWeb.setText(selectedBP.Web);
         
-            view.bpBuildingItem.setValue(selectedBP.Building);
+            view.bpBuildingItem.setValue(selectedBP.ID);
             view.bpStreetItem.setValue(selectedBP.Street);
             view.bpCityItem.setValue(selectedBP.City);
             view.bpCountryItem.setValue(selectedBP.Country);
@@ -149,7 +150,9 @@ sap.ui.controller("spatial-demo.bpDetails", {
         
             // Show a bubble on marker click/tap
             noiseMarker.addEventListener("tap", function() {
-                    onMarkerSelected(data.$label, data, noisePoint);
+            	//data.$address correspond au donnees que l'on affiche sur le marker 
+            	//on recupere ces donnees
+                    onMarkerSelected(data.$address, data, noisePoint);
             });
         
             return noiseMarker;
@@ -162,9 +165,9 @@ sap.ui.controller("spatial-demo.bpDetails", {
             url: "/sap/hana/democontent/epm/spatial/services/getAllBusinessPartnersData.xsjs",
             success: function(data) {
                 bps = data.entry;
-                for (var i = 0; i < data.entry.length; i++) {
-                    labels[i] = data.entry[i].Name;
-                    addresses[i] = data.entry[i].Building + ' ' + data.entry[i].Street + ', ' + data.entry[i].Zip + ' ' + data.entry[i].City + ', ' + data.entry[i].Country;
+                for (var i = 0; i < bps.length; i++) {
+                    labels[i] = data.entry[i].ID;
+                    addresses[i] =  data.entry[i].Street + ' ' + data.entry[i].City;
                 }
                 
                 // Create a clustering provider with a custom theme
@@ -182,7 +185,7 @@ sap.ui.controller("spatial-demo.bpDetails", {
                     
                     // addMarkerToGroup(group, {lat:parseFloat(bps[z].lat), lng:parseFloat(bps[z].long)}, bps[z].Name);
                     // Create a new marker on the found location
-                    // marker = new nokia.maps.map.StandardMarker(
+                    // marker = new nokia.maps.map.StandardMarker();
                     //     new nokia.maps.geo.Coordinate(parseFloat(bps[z].lat),
                     //         parseFloat(bps[z].long)));
                     // Add marker to its container so it will be render
@@ -195,7 +198,7 @@ sap.ui.controller("spatial-demo.bpDetails", {
                      * information to the marker in cluster theme.
                      */
                     bps[z].$address = addresses[z];
-                    bps[z].$label = bps[z].Name;
+                    bps[z].$label = bps[z].ID;
                     clusteredDataProvider.addDataPoint(cood);
                 }
     
